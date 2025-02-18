@@ -8,47 +8,47 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from 'react-native';
+import logo from './assets/NativeLogo.png';
 
 const App = () => {
-  const [nome, setNome] = useState(''); // Estado para armazenar o nome digitado
-  const [mensagem, setMensagem] = useState(''); // Estado para armazenar a mensagem de resposta
+  const [nome, setNome] = useState('');
+  const [mensagem, setMensagem] = useState('');
 
   const lidarComClique = () => {
-    if (!nome) {
-      setMensagem('Por favor, digite seu nome.'); // Exibe mensagem se o nome não for digitado
+    if (nome) {
+      setMensagem(`Ola, ${nome}!`);
     } else {
-      setMensagem(`Olá, ${nome}!`); // Exibe saudação personalizada
+      setMensagem('Ola, Por favor diga seu nome.');
     }
   };
 
   return (
     <View style={styles.container}>
-      <Image
-        source={{ uri: 'https://reactnative.dev/img/react_native_logo.png' }}
-        style={styles.logo}
-      />
+      <Image source={logo} style={styles.logo} />
       <Text style={styles.titulo}>Exemplo de App Interativo</Text>
+
       <TextInput
         style={styles.input}
         placeholder="Digite seu nome"
-        onChangeText={setNome} // Atualiza o estado 'nome' conforme o usuário digita
+        onChangeText={setNome}
         value={nome}
       />
-      <Button title="Enviar" onPress={lidarComClique} />{' '}
-      {/* Botão para enviar o nome */}
+
+      <Button title="Enviar" onPress={lidarComClique} />
+
       <TouchableOpacity style={styles.botao}>
         <Text style={styles.textoBotao}>Clique Aqui</Text>
       </TouchableOpacity>
+
       <Text style={styles.mensagem}>{mensagem}</Text>
     </View>
   );
 };
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center', // Centraliza os elementos verticalmente
-    alignItems: 'center', // Centraliza os elementos horizontalmente
+    justifyContent: 'center',
+    alignItems: 'center',
     padding: 20,
   },
   logo: {
@@ -65,15 +65,15 @@ const styles = StyleSheet.create({
     width: '100%',
     height: 40,
     borderColor: 'gray',
-    borderWidth: 1, // Borda cinza no campo de entrada
+    borderWidth: 1,
     marginBottom: 20,
     paddingHorizontal: 10,
   },
   botao: {
     backgroundColor: 'blue',
     padding: 10,
-    borderRadius: 5, // Botão arredondado
-    marginTop: 30,
+    borderRadius: 5,
+    marginTop: 20,
   },
   textoBotao: {
     color: 'white',
