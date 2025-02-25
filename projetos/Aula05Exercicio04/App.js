@@ -8,18 +8,27 @@ import {
   TouchableOpacity,
   ScrollView,
   FlatList,
-  SectionList,
+  SectionList, 
+  ActivityIndicator,
   StyleSheet,
 } from 'react-native';
 import logo from './assets/NativeLogo.png';
 
 const App = () => {
   const [text, setText] = useState('');
-  const [items, setItems] = useState([
+  const [isLoading, setIsLoading] = useState(false);
+const handlePress =() =>{
+  setIsLoading(true);
+  setTimeout(()=>{
+    setIsLoading(false);
+    alert('botão pressionado');
+  }, 2000);
+};
+  const data = [
     { id: '1', name: 'Item 1' },
     { id: '2', name: 'Item 2' },
     { id: '3', name: 'Item 3' },
-  ]);
+  ];
   const sections =[
     {
       title: 'seção 1',
@@ -30,10 +39,6 @@ const App = () => {
       data:[{id:3, name: 'Item 3'},{id:4, name:'item 4'}],
     },
   ];
-
-  const handlePress = () => {
-    alert('Botão pressionado');
-  };
 
 
   return (
@@ -55,9 +60,10 @@ const App = () => {
       <TouchableOpacity style={styles.touchableOpacity} onPress={handlePress}>
         <Text style={styles.touchableOpacityText}>aqui</Text>
       </TouchableOpacity>
+      <ActivityIndicator animating={isLoading}/>
       </View>
       <FlatList
-        data={items}
+        data={data}
         renderItem={({ item }) => (
             <Text>{item.name}</Text>
         )}
