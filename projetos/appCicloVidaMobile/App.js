@@ -26,7 +26,7 @@ class MeuComponentc extends Component {
 
     alterarMensagem = () => {
         // Atualiza o estado para alterar a mensagem
-        this.setState({ mensagem: 'Nova mensagem!' });
+        this.setState({ mensagem: 'Guilherme Calandrim Fávero!' });
     };
 
     incrementarContador = () => {
